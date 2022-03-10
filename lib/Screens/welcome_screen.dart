@@ -56,7 +56,7 @@ class WelcomeScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     authentificationButton(Colors.indigo, 'Sign In', Colors.white, context),
-                    authentificationButton(Colors.white, 'Sign In', Colors.lightBlue, context),
+                    authentificationButton(Colors.white, 'Sign Up', Colors.lightBlue, context),
                   ],
                 ),
               ),
