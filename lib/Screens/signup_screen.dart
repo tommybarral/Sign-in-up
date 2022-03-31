@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../Models/auth.dart';
+import 'successful_screen.dart';
 
-class AuthentificationScreen extends StatelessWidget {
+class SignupScreen extends StatelessWidget {
 
-  static const routeName = '/authentification-screen';
+  static const routeName = '/signup-screen';
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  Widget signInWith(IconData icon) {
+  Widget signUpWith(IconData icon) {
     return Container(
       height: 50,
       width: 115,
@@ -27,13 +30,17 @@ class AuthentificationScreen extends StatelessWidget {
 
   Widget userInput(TextEditingController userInput, String hintTitle, TextInputType keyboardType) {
     return Container(
+      height: 55,
       margin: EdgeInsets.only(bottom: 15),
       decoration: BoxDecoration(color: Colors.blueGrey.shade200, borderRadius: BorderRadius.circular(30)),
       child: Padding(
-        padding: const EdgeInsets.only(left: 25.0, right: 25),
+        padding: const EdgeInsets.only(left: 25.0, top: 15, right: 25),
         child: TextField(
           controller: userInput,
-          decoration: InputDecoration(
+          autocorrect: false,
+          enableSuggestions: false,
+          autofocus: false,
+          decoration: InputDecoration.collapsed(
             hintText: hintTitle,
             hintStyle: TextStyle(fontSize: 18, color: Colors.white70, fontStyle: FontStyle.italic),
           ),
@@ -86,8 +93,10 @@ class AuthentificationScreen extends StatelessWidget {
                 onPressed: () {
                   print(emailController);
                   print(passwordController);
+                  Provider.of<Auth>(context, listen: false).signup(emailController.text, passwordController.text);
+                  Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => SuccessfulScreen()));
                 },
-                child: Text('Sign in', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white,),),
+                child: Text('Sign up', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white,),),
                 ),
               ),
                 SizedBox(height: 20),
@@ -98,26 +107,27 @@ class AuthentificationScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      signInWith(Icons.add),
-                      signInWith(Icons.book_online),
+                      signUpWith(Icons.add),
+                      signUpWith(Icons.book_online),
                     ],
                   ),
                 ),
                 Divider(thickness: 0, color: Colors.white),
+                  /*
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Don\'t have an account yet ? ', style: TextStyle(color: Colors.grey, fontStyle: FontStyle.italic),),
-                  TextButton(
+                    //Text('Don\'t have an account yet ? ', style: TextStyle(color: Colors.grey, fontStyle: FontStyle.italic),),
+                    TextButton(
                     onPressed: () {},
                     child: Text(
                       'Sign Up',
                       style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
                     ),
                   ),
-
                   ],
                 ),
+                  */
               ],
             ),
           ),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import './authentification_screen.dart';
+import 'login_screen.dart';
+import 'signup_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
 
   static const routeName = '/welcome-screen';
 
-  Widget authentificationButton(Color buttonColor, String title, Color textColor, BuildContext ctx) {
+  /*
+  Widget routeButton(Color buttonColor, String title, Color textColor, BuildContext context) {
     return Container(
       height: 80,
       width: double.infinity,
@@ -14,15 +16,12 @@ class WelcomeScreen extends StatelessWidget {
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
         color: buttonColor,
-        onPressed: () {
-          Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-            return AuthentificationScreen();
-          }));
-        },
+        onPressed: () => context,
         child: Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: textColor,),),
       ),
     );
   }
+  */
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +54,47 @@ class WelcomeScreen extends StatelessWidget {
                 flex: 3,
                 child: Column(
                   children: [
-                    authentificationButton(Colors.indigo, 'Sign In', Colors.white, context),
-                    authentificationButton(Colors.white, 'Sign Up', Colors.lightBlue, context),
+                    Container(
+                      height: 80,
+                      width: double.infinity,
+                      padding: const EdgeInsets.only(top: 25, left: 24, right: 24),
+                      child: RaisedButton(
+                        onPressed: () => Navigator.of(context).pushNamed(LoginScreen.routeName),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                        ),
+                        color: Colors.indigo,
+                        child: Text(
+                          'Log In',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 80,
+                      width: double.infinity,
+                      padding: const EdgeInsets.only(top: 25, left: 24, right: 24),
+                      child: RaisedButton(
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                        ),
+                        color: Colors.white,
+                        onPressed: () => Navigator.of(context).pushNamed(SignupScreen.routeName),
+                        child: Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.lightBlue,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
