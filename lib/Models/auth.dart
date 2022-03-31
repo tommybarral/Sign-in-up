@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../key.dart';
-import 'dart:convert';
 
 class Auth with ChangeNotifier {
 
